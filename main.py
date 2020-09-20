@@ -1,5 +1,6 @@
 from tweepy import OAuthHandler
 from tweepy import API
+from tweepy import Cursor
 import sys
 import os
 import flask
@@ -18,10 +19,25 @@ app = flask.Flask(__name__)
 
 app.static_folder = 'static'
 
+
 @app.route('/')
 def index():
+    
+    foods = ["poke bowl", "ice cream cake", "eggplant parmesean", "fondant potatoes", "chole channa", "mushroom burger", "pizza"]
+    chosen_food = random.choice(foods)
+    
+    searched_tweets = []
+    for tweet in Cursor(auth_api.search, q=chosen_food, lang="en", tweet_mode="extended").items(15):
+        searched_tweets.append(tweet)
+        
+    chosen_tweet = searched_tweets[ random.randint(0,14) ]
+    
     return flask.render_template(
         "index.html", 
+        food = chosen_food,
+        tweet = chosen_tweet.full_text,
+        tweet_author = chosen_tweet.user.screen_name,
+        tweet_time = chosen_tweet.created_at,
     )
 
 app.run(
