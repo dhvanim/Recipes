@@ -1,6 +1,21 @@
 body {
     font-family: Helvetica;
-    font-size: 12px;
-    background-color:#a6bfa3;
+    font-size: 14px;
+    background-color:#2e856e;
+    width:60%;
+    margin:auto;
 }
 
+h2 {
+    background-color:#dfeae2;
+    text-align:center;
+    padding: 5px 0px;
+    border-radius:5px;
+}
+
+.tweet {
+    background-color:#b8d5cd;
+    font-family: Georgia;
+    padding: 7px;
+    border-radius:5px;
+}

@@ -23,14 +23,14 @@ app.static_folder = 'static'
 @app.route('/')
 def index():
     
-    foods = ["poke bowl", "ice cream cake", "eggplant parmesean", "fondant potatoes", "chole channa", "mushroom burger", "pizza"]
+    foods = ["Poke Bowl", "Ice Cream Cake", "Eggplant Parmesean", "Fondant Potatoes", "Chole Chana", "Mushroom Burger", "Ratatouille"]
     chosen_food = random.choice(foods)
     
     searched_tweets = []
     for tweet in Cursor(auth_api.search, q=chosen_food, lang="en", tweet_mode="extended").items(15):
         searched_tweets.append(tweet)
         
-    chosen_tweet = searched_tweets[ random.randint(0,14) ]
+    chosen_tweet = random.choice(searched_tweets)
     
     return flask.render_template(
         "index.html", 

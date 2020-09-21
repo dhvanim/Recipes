@@ -7,11 +7,12 @@
     </head>
     <body>
         
-        <p> Chosen food: {{ food }} </p>
-        <p> Chosen tweet: {{ tweet }} <br>
-            Author: {{ tweet_author }} <br>
-            Date/time: {{ tweet_time }} 
-        </p>
+        <h2> {{ food }} </h2>
+        
+        <div class="tweet">
+        <p> "{{ tweet }}" - <i><b>@{{ tweet_author }} [{{ tweet_time }}] </b></i></p>
+        </div>
+       
         
     </body>
 </html>
