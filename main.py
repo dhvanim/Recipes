@@ -5,6 +5,9 @@ import sys
 import os
 import flask
 import random
+import requests
+
+spoon_api = os.environ["SPOON_API_KEY"]
 
 api_key = os.environ["TWITTER_API_KEY"]
 api_secret = os.environ["TWITTER_API_SECRET_KEY"]
@@ -19,7 +22,6 @@ app = flask.Flask(__name__)
 
 app.static_folder = 'static'
 
-
 @app.route('/')
 def index():
     
@@ -31,6 +33,13 @@ def index():
         searched_tweets.append(tweet)
         
     chosen_tweet = random.choice(searched_tweets)
+    
+    spoon_url = "https://api.spoonacular.com/recipes/complexSearch"
+    conditions = {"query" : chosen_food, "addRecipeInformation" : "true", "number" : "1", "apiKey" : spoon_api}
+    
+    spoon_response = requests.get(spoon_url, params = conditions)
+    
+    # use spoon response etc etc
     
     return flask.render_template(
         "index.html", 
