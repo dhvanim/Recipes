@@ -13,9 +13,40 @@ h2 {
     border-radius:5px;
 }
 
+a {
+    text-decoration: none;
+    background-color: green;
+    color: #fff;
+    padding: 5px;
+    border-radius:5px;
+}
+
+a:hover {
+    background-color: #000;
+}
+
 .tweet {
     background-color:#b8d5cd;
     font-family: Georgia;
     padding: 7px;
     border-radius:5px;
+    margin-top: 15px;
+}
+
+.recipe {
+    padding: 10px;
+    border-radius:5px;
+    background-color:#fff;
+}
+
+.recipe img {
+    max-width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.ingredients p {
+    float: left;
+    position: relative;
 }

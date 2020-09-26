@@ -7,7 +7,25 @@
     </head>
     <body>
         
-        <h2> {{ food }} </h2>
+        <h2> {{ recipe_name }} </h2>
+        
+        <div class="recipe">
+        <img src="{{ recipe_image }}" alt="{{ recipe_name }}">
+        
+        <p class="ingredients">
+            
+        {%for i in range(0, i_len)%}
+            
+        {{ ingredients[i] }} <br>
+            
+        {%endfor%}
+        
+        </p> 
+        
+        <p> <i> <a href="{{ recipe_url }}"> Recipe Source </a> </i> </p>
+        
+        
+        </div>
         
         <div class="tweet">
         <p> "{{ tweet }}" - <i><b>@{{ tweet_author }} [{{ tweet_time }}] </b></i></p>
