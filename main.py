@@ -25,8 +25,10 @@ app.static_folder = 'static'
 @app.route('/')
 def index():
     
-    foods = ["Poke Bowl", "Ice Cream Cake", "Eggplant Parmesean", "Fondant Potatoes", "Chole Chana", "Mushroom Burger", "Ratatouille"]
+    foods = ["Ice Cream Cake", "Eggplant Parmesan", "Potato", "Mushroom Burger", "Ratatouille"]
     chosen_food = random.choice(foods)
+    
+    print(chosen_food)
     
     searched_tweets = []
     for tweet in Cursor(auth_api.search, q=chosen_food, lang="en", tweet_mode="extended").items(15):
@@ -34,19 +36,47 @@ def index():
         
     chosen_tweet = random.choice(searched_tweets)
     
-    spoon_url = "https://api.spoonacular.com/recipes/complexSearch"
-    conditions = {"query" : chosen_food, "addRecipeInformation" : "true", "number" : "1", "apiKey" : spoon_api}
+    # request recipe based on chosen food
+    get_recipe = "https://api.spoonacular.com/recipes/complexSearch"
+    r_conditions = {"query" : chosen_food, "addRecipeInformation" : "true", "number" : "1", "apiKey" : spoon_api}
+    recipe_response = requests.get(get_recipe, params = r_conditions)
     
-    spoon_response = requests.get(spoon_url, params = conditions)
+    recipe_info = recipe_response.json()
+
+    # get recipe name and id
+    recipe_name = recipe_info["results"][0]["title"]
+    recipe_id = recipe_info["results"][0]["id"]
     
-    # use spoon response etc etc
+    # use recipe id to get ingredient information
+    get_ingredients = "https://api.spoonacular.com/recipes/" + str(recipe_id) + "/ingredientWidget.json"
+    i_conditions = {"apiKey":spoon_api}
+    ingredients_response = requests.get(get_ingredients, params = i_conditions)
+   
+    ingredients_info = ingredients_response.json()
+    
+    # iterate through ingredients response and compile in list
+    ingredients_list = []
+    for ingredient in ingredients_info["ingredients"]:
+        name = ingredient["name"]
+        amount = ingredient["amount"]["us"]["value"] 
+        unit = ingredient["amount"]["us"]["unit"]
+        
+        item = str(amount) + " " + unit + " " + name 
+        ingredients_list.append( item )
+        
+    print(ingredients_list)
+    
+    # iterate through recipe steps and compile in list
+    
+    
     
     return flask.render_template(
         "index.html", 
-        food = chosen_food,
         tweet = chosen_tweet.full_text,
         tweet_author = chosen_tweet.user.screen_name,
         tweet_time = chosen_tweet.created_at,
+        
+        recipe_name = recipe_name,
     )
 
 app.run(
