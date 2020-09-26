@@ -43,9 +43,11 @@ def index():
     
     recipe_info = recipe_response.json()
 
-    # get recipe name and id
+    # get recipe name, id, url, image
     recipe_name = recipe_info["results"][0]["title"]
     recipe_id = recipe_info["results"][0]["id"]
+    recipe_url = recipe_info["results"][0]["sourceUrl"]
+    recipe_image = recipe_info["results"][0]["image"]
     
     # use recipe id to get ingredient information
     get_ingredients = "https://api.spoonacular.com/recipes/" + str(recipe_id) + "/ingredientWidget.json"
@@ -63,12 +65,15 @@ def index():
         
         item = str(amount) + " " + unit + " " + name 
         ingredients_list.append( item )
-        
-    print(ingredients_list)
     
+    # for later
+    '''
     # iterate through recipe steps and compile in list
-    
-    
+    steps_list = []
+    steps_info = recipe_info["results"][0]["analyzedInstructions"]["steps"]
+    for step in steps_info:
+     
+    '''   
     
     return flask.render_template(
         "index.html", 
@@ -77,6 +82,9 @@ def index():
         tweet_time = chosen_tweet.created_at,
         
         recipe_name = recipe_name,
+        recipe_image = recipe_image,
+        recipe_url = recipe_url,
+        ingredients = ingredients_list
     )
 
 app.run(
