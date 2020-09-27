@@ -1,52 +1,81 @@
 body {
-    font-family: Helvetica;
-    font-size: 14px;
-    background-color:#2e856e;
-    width:60%;
-    margin:auto;
+    background-image:url('cooking1.jpg');
+    background-size:cover;
+    
 }
 
-h2 {
-    background-color:#dfeae2;
+.content {
+    font-family: Helvetica;
+    font-size: 12px;
+    width:80%;
+    max-width:500px;
+    margin:25px auto;
+    line-height:20px;
+    background-color:rgba(255, 255, 255, 0.85);
+    border-radius:2px;
+}
+
+h1 {
     text-align:center;
-    padding: 5px 0px;
+    padding-top:20px;
     border-radius:5px;
+    color:#734f2a;
+    font-weight:800;
+}
+
+h3 {
+    margin:0;
 }
 
 a {
     text-decoration: none;
-    background-color: green;
+}
+
+.recipesource {
+    text-align:right;
+    margin-right:20px;
+}
+
+.recipesource a {
+    background-color: #b87f45;
     color: #fff;
-    padding: 5px;
+    padding: 7px;
     border-radius:5px;
 }
 
-a:hover {
-    background-color: #000;
+.recipesource a:hover {
+    background-color: #734f2a;
 }
 
 .tweet {
-    background-color:#b8d5cd;
     font-family: Georgia;
     padding: 7px;
     border-radius:5px;
-    margin-top: 15px;
+    margin-top: 5px;
+    text-align:center;
+    font-style:italic;
+    font-size:14px;
 }
 
 .recipe {
-    padding: 10px;
+    padding:0px 20px;
     border-radius:5px;
-    background-color:#fff;
 }
 
 .recipe img {
-    max-width:90%;
+    width:90%;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
-.ingredients p {
-    float: left;
-    position: relative;
+.ingredients {
+    width:30%;
+    float:left;
 }
+
+.directions {
+    width:70%;
+    float:left;
+}
+

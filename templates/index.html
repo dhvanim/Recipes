@@ -7,30 +7,62 @@
     </head>
     <body>
         
-        <h2> {{ recipe_name }} </h2>
-        
-        <div class="recipe">
-        <img src="{{ recipe_image }}" alt="{{ recipe_name }}">
-        
-        <p class="ingredients">
+        <div class="content">
             
-        {%for i in range(0, i_len)%}
             
-        {{ ingredients[i] }} <br>
             
-        {%endfor%}
-        
-        </p> 
-        
-        <p> <i> <a href="{{ recipe_url }}"> Recipe Source </a> </i> </p>
-        
-        
+                <h1> {{ recipe_name }} </h1>
+                
+                <div class="recipe">
+                    
+                    <img src="{{ recipe_image }}" alt="{{ recipe_name }}">
+                    
+                    <div class="ingredients">
+                        <p>
+                        
+                        <h3>Ingredients:</h3>
+                            
+                        {%for i in range(0, i_len)%}
+                            
+                        {{ ingredients[i] }} <br>
+                            
+                        {%endfor%}
+                        
+                        </p> 
+                    </div>
+                    
+                    <div class="directions">
+                        
+                        <p>
+                        
+                        <ol>
+                            
+                            <h3>Directions</h3>
+                                
+                            {%for i in range(0, d_len)%}
+                            
+                            <li> {{ directions[i] }} </li>
+                            
+                            {%endfor%}
+                            
+                        </ol>
+                        </p>
+                    </div>
+                    
+                    <div class="recipesource">
+                        <a href="{{ recipe_url }}"> Recipe Source </a>
+                    </div>
+                    
+                
+                </div>
+                
+                
+                
+                <div class="tweet">
+                    <p> "{{ tweet }}" - @{{ tweet_author }} [{{ tweet_time }}] </p>
+                </div>
+           
         </div>
-        
-        <div class="tweet">
-        <p> "{{ tweet }}" - <i><b>@{{ tweet_author }} [{{ tweet_time }}] </b></i></p>
-        </div>
-       
         
     </body>
 </html>
