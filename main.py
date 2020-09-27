@@ -27,9 +27,7 @@ def index():
     
     foods = ["Ice Cream Cake", "Eggplant Parmesan", "Potato", "Mushroom Burger", "Ratatouille"]
     chosen_food = random.choice(foods)
-    
-    print(chosen_food)
-    
+ 
     searched_tweets = []
     for tweet in Cursor(auth_api.search, q=chosen_food, lang="en", tweet_mode="extended").items(15):
         searched_tweets.append(tweet)
@@ -40,9 +38,8 @@ def index():
     get_recipe = "https://api.spoonacular.com/recipes/complexSearch"
     r_conditions = {"query" : chosen_food, "addRecipeInformation" : "true", "number" : "1", "apiKey" : spoon_api}
     recipe_response = requests.get(get_recipe, params = r_conditions)
-    
     recipe_info = recipe_response.json()
-
+    
     # get recipe name, id, url, image
     recipe_name = recipe_info["results"][0]["title"]
     recipe_id = recipe_info["results"][0]["id"]
@@ -53,7 +50,6 @@ def index():
     get_ingredients = "https://api.spoonacular.com/recipes/" + str(recipe_id) + "/ingredientWidget.json"
     i_conditions = {"apiKey":spoon_api}
     ingredients_response = requests.get(get_ingredients, params = i_conditions)
-   
     ingredients_info = ingredients_response.json()
     
     # iterate through ingredients response and compile in list
@@ -65,15 +61,16 @@ def index():
         
         item = str(amount) + " " + unit + " " + name 
         ingredients_list.append( item )
-    
-    # for later
-    '''
+        
     # iterate through recipe steps and compile in list
-    steps_list = []
-    steps_info = recipe_info["results"][0]["analyzedInstructions"]["steps"]
-    for step in steps_info:
-     
-    '''   
+    directions_list = []
+    steps_info = recipe_info["results"][0]["analyzedInstructions"][0]["steps"]
+    for direction in steps_info:
+        num = direction["number"]
+        direction = direction["step"]
+        
+        item = str(num) + ". " + direction
+        directions_list.append(item)
     
     return flask.render_template(
         "index.html", 
@@ -84,7 +81,10 @@ def index():
         recipe_name = recipe_name,
         recipe_image = recipe_image,
         recipe_url = recipe_url,
-        ingredients = ingredients_list
+        ingredients = ingredients_list,
+        i_len = len(ingredients_list),
+        directions = directions_list,
+        d_len = len(directions_list)
     )
 
 app.run(
