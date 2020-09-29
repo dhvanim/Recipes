@@ -5,7 +5,7 @@ body {
 }
 
 .content {
-    font-family: Helvetica;
+    font-family: Arial;
     font-size: 12px;
     width:80%;
     max-width:500px;
@@ -19,8 +19,10 @@ h1 {
     text-align:center;
     padding-top:20px;
     border-radius:5px;
-    color:#734f2a;
+    color:#b87f45;
     font-weight:800;
+    font-size: 30px;
+    line-height:35px;
 }
 
 h3 {
@@ -32,7 +34,7 @@ a {
 }
 
 .recipesource {
-    text-align:right;
+    text-align:center;
     margin-right:20px;
 }
 
@@ -49,9 +51,6 @@ a {
 
 .tweet {
     font-family: Georgia;
-    padding: 7px;
-    border-radius:5px;
-    margin-top: 5px;
     text-align:center;
     font-style:italic;
     font-size:14px;
@@ -75,7 +74,7 @@ a {
 }
 
 .directions {
-    width:70%;
+    width:65%;
     float:left;
 }
 

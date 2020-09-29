@@ -25,6 +25,7 @@ app.static_folder = 'static'
 @app.route('/')
 def index():
     
+    
     foods = ["Ice Cream Cake", "Eggplant Parmesan", "Potato", "Mushroom Burger", "Ratatouille"]
     chosen_food = random.choice(foods)
  
@@ -45,6 +46,8 @@ def index():
     recipe_id = recipe_info["results"][0]["id"]
     recipe_url = recipe_info["results"][0]["sourceUrl"]
     recipe_image = recipe_info["results"][0]["image"]
+    recipe_preptime = recipe_info["results"][0]["readyInMinutes"]
+    recipe_serving = recipe_info["results"][0]["servings"]
     
     # use recipe id to get ingredient information
     get_ingredients = "https://api.spoonacular.com/recipes/" + str(recipe_id) + "/ingredientWidget.json"
@@ -66,12 +69,9 @@ def index():
     directions_list = []
     steps_info = recipe_info["results"][0]["analyzedInstructions"][0]["steps"]
     for direction in steps_info:
-        num = direction["number"]
         direction = direction["step"]
+        directions_list.append(direction)
         
-        item = str(num) + ". " + direction
-        directions_list.append(item)
-    
     return flask.render_template(
         "index.html", 
         tweet = chosen_tweet.full_text,
@@ -81,8 +81,12 @@ def index():
         recipe_name = recipe_name,
         recipe_image = recipe_image,
         recipe_url = recipe_url,
+        recipe_preptime = recipe_preptime,
+        recipe_serving = recipe_serving,
+        
         ingredients = ingredients_list,
         i_len = len(ingredients_list),
+        
         directions = directions_list,
         d_len = len(directions_list)
     )
