@@ -6,6 +6,7 @@ import os
 import flask
 import random
 import requests
+from flask import request, url_for, redirect
 
 spoon_api = os.environ["SPOON_API_KEY"]
 
@@ -22,13 +23,17 @@ app = flask.Flask(__name__)
 
 app.static_folder = 'static'
 
+random_food = True
+input_food = ""
+foods = ["pancakes", "waffles", "french toast", "eggs benedict", "hash browns", "banana bread", "blueberry muffins", "peanut butter", "avocado toast"]
+
+
 @app.route('/')
 def index():
     
-    
-    foods = ["Ice Cream Cake", "Eggplant Parmesan", "Potato", "Mushroom Burger", "Ratatouille"]
     chosen_food = random.choice(foods)
- 
+    
+    # searches twitter for 15 tweets relating to food, appends to list
     searched_tweets = []
     for tweet in Cursor(auth_api.search, q=chosen_food, lang="en", tweet_mode="extended").items(15):
         searched_tweets.append(tweet)

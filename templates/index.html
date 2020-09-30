@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Recipes </title>
+        <title> Breakfast Recipes! </title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     </head>
     <body>
@@ -17,15 +17,11 @@
                     
                     <img src="{{ recipe_image }}" alt="{{ recipe_name }}">
                     
-                    
-                    
                     <div class="ingredients">
                         
                         <p>
                         <h3>Ingredients:</h3>
-                        
-                        
-                            
+  
                         {%for i in range(0, i_len)%}
                             
                         {{ ingredients[i] }} <br>
@@ -35,11 +31,15 @@
                         </p> 
                         
                         <p> 
-                        <b> Prep Time: </b> {{ recipe_preptime }} minutes <br>
-                        <b> Servings: </b> {{ recipe_serving }}
+                        <b> Prep Time</b>:  {{ recipe_preptime }} minutes <br>
+                        <b> Servings</b>:  {{ recipe_serving }}
+                        
                         </p>
+                        
                     
                     </div>
+                    
+                    
                     
                     <div class="directions">
                         <p>
@@ -60,9 +60,9 @@
                     
                     <div class="recipesource">
                         <p> <br>
-                        <a href="{{ recipe_url }}"> Recipe Source </a>
+                        For more information: <a href="{{ recipe_url }}"> Recipe Source </a>
                         </p>
-                        <br>
+                        
                     </div>
                     
                 </div>

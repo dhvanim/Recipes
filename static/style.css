@@ -1,7 +1,21 @@
 body {
-    background-image:url('cooking1.jpg');
+    background-image:url('bfast1.jpg');
     background-size:cover;
-    
+}
+
+
+h1 {
+    text-align:center;
+    padding:10px 5px 0px 5px;
+    color:#8a485c;
+    font-weight:800;
+    font-size: 30px;
+    line-height:35px;
+}
+
+h3 {
+    margin:0;
+    background-color: rgba(230, 175, 119, .6)
 }
 
 .content {
@@ -12,41 +26,26 @@ body {
     margin:25px auto;
     line-height:20px;
     background-color:rgba(255, 255, 255, 0.85);
-    border-radius:2px;
-}
-
-h1 {
-    text-align:center;
-    padding-top:20px;
-    border-radius:5px;
-    color:#b87f45;
-    font-weight:800;
-    font-size: 30px;
-    line-height:35px;
-}
-
-h3 {
-    margin:0;
-}
-
-a {
-    text-decoration: none;
+    border-radius:1px;
+    border:5px solid rgba(230, 175, 119, .6);
+    box-shadow: 0px 0px 50px #555;
+    padding-bottom:20px;
 }
 
 .recipesource {
     text-align:center;
     margin-right:20px;
+    font-style:italic;
 }
 
 .recipesource a {
-    background-color: #b87f45;
-    color: #fff;
-    padding: 7px;
-    border-radius:5px;
+    color:#8a485c;
+    font-weight:bold;
+    font-size:14px;
 }
 
 .recipesource a:hover {
-    background-color: #734f2a;
+    color:#b87f45;
 }
 
 .tweet {
@@ -54,11 +53,12 @@ a {
     text-align:center;
     font-style:italic;
     font-size:14px;
+    font-weight:bold;
+    padding: 0px 5px;
 }
 
 .recipe {
-    padding:0px 20px;
-    border-radius:5px;
+    padding:20px 20px;
 }
 
 .recipe img {
@@ -71,6 +71,11 @@ a {
 .ingredients {
     width:30%;
     float:left;
+    padding-bottom: 20px;
+}
+
+.ingredients b {
+    background-color:rgba(230, 175, 119, .6);
 }
 
 .directions {
