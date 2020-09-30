@@ -4,4 +4,4 @@
 # command-line instructions on how to run the app (with all
 # necessary parameters).
 
-web: python user_tweets.py
+web: python main.py
