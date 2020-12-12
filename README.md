@@ -1,4 +1,6 @@
-This is a web application that displays a random (hard-coded) food item and generated related tweet!
+**Link to application: https://breakfast-recipes.herokuapp.com/** <br/>
+
+This is a web application that displays a random food item and generated related tweet!
 
 <b>To use this repository, follow these steps:</b>
 
